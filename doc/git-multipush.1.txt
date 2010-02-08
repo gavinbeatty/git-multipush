@@ -9,7 +9,7 @@ git-multipush - push a branch to multiple remotes in one command.
 
 SYNOPSIS
 --------
-*git multipush* [*-v*] [*-n*] [*-b* '<branch>'] ['<remote>...'] [-- 'GIT_OPTIONS']
+*git multipush* [*-v*] [*-e*] [*-n*] [*-b* '<branch>'] ['<remote>...'] [-- 'GIT_OPTIONS']
 
 
 DESCRIPTION
@@ -23,15 +23,18 @@ OPTIONS
 *-v*::
     Print the git commands before executing them.
 
+*-e*::
+    Fail immediately when any push fails. Otherwise, we fail after all pushes
+    with the error code of the last failed push.
+
 *-n*::
     Don't run any of the git commands. Only print them, as in *-v*.
 
 *-b*::
-    
+    The branch to push -- defaults to `git symbolic-ref HEAD`.
 
 `<branch>`::
-    The branch to push -- defaults to `git symbolic-ref HEAD`. Anything
-    accepted by *git push* is accepted (it's just passed on).
+    Any branch name that *git push* can handle.
 
 `<remote>...`::
     The list of remotes to push to -- defaults to origin.

@@ -2,12 +2,12 @@
 .\"     Title: git-multpush
 .\"    Author: [see the "AUTHOR" section]
 .\" Generator: DocBook XSL Stylesheets v1.75.2 <http://docbook.sf.net/>
-.\"      Date: 02/04/2010
+.\"      Date: 02/08/2010
 .\"    Manual: \ \&
 .\"    Source: \ \& 1.0
 .\"  Language: English
 .\"
-.TH "GIT\-MULTPUSH" "1" "02/04/2010" "\ \& 1\&.0" "\ \&"
+.TH "GIT\-MULTPUSH" "1" "02/08/2010" "\ \& 1\&.0" "\ \&"
 .\" -----------------------------------------------------------------
 .\" * set default formatting
 .\" -----------------------------------------------------------------
@@ -22,7 +22,7 @@
 git-multipush \- push a branch to multiple remotes in one command\&.
 .SH "SYNOPSIS"
 .sp
-\fBgit multipush\fR [\fB\-v\fR] [\fB\-n\fR] [\fB\-b\fR \fI<branch>\fR] [\fI<remote>\&...\fR] [\-\- \fIGIT_OPTIONS\fR]
+\fBgit multipush\fR [\fB\-v\fR] [\fB\-e\fR] [\fB\-n\fR] [\fB\-b\fR \fI<branch>\fR] [\fI<remote>\&...\fR] [\-\- \fIGIT_OPTIONS\fR]
 .SH "DESCRIPTION"
 .sp
 Particularly useful for people hosting on multiple git repo providers all at once\&. e\&.g\&., github\&.com, gitorious\&.org and repo\&.or\&.cz\&.
@@ -33,18 +33,28 @@ Particularly useful for people hosting on multiple git repo providers all at onc
 Print the git commands before executing them\&.
 .RE
 .PP
+\fB\-e\fR
+.RS 4
+Fail immediately when any push fails\&. Otherwise, we fail after all pushes with the error code of the last failed push\&.
+.RE
+.PP
 \fB\-n\fR
 .RS 4
 Don\(cqt run any of the git commands\&. Only print them, as in
 \fB\-v\fR\&.
 .RE
 .PP
-\fB\-b\fR, <branch>
+\fB\-b\fR
 .RS 4
 The branch to push \(em defaults to
-git symbolic\-ref HEAD\&. Anything accepted by
+git symbolic\-ref HEAD\&.
+.RE
+.PP
+<branch>
+.RS 4
+Any branch name that
 \fBgit push\fR
-is accepted (it\(cqs just passed on)\&.
+can handle\&.
 .RE
 .PP
 <remote>\&.\&.\&.

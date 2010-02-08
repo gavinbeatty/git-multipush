@@ -7,11 +7,14 @@ useful for people hosting on multiple git repo providers all at once.
 e.g., github.com, gitorious.org and repo.or.cz.
 
     Usage: git multipush [-v] [-n] [-b <branch>] [<remote>...] [-- GIT_OPTIONS]
+    Usage: git multipush [-v] [-e] [-n] [-b <branch>] [<remote>...] [-- GIT_OPTIONS]
     
     <branch> is the branch to push -- if none given, pass none to git push
     <remote>... is the list of remotes to push to -- defaults to origin
     
     -v -- print each command as it is run.
+    -e -- fail immediately when any push fails. Otherwise, we fail after all
+          pushes with the error code of the last failed push.
     -n -- don't run any commands, just print them.
     -b <branch> -- push <branch> instead of `git symbolic-ref HEAD`
     -d -- debug

@@ -11,8 +11,8 @@ shift 3
 lf='
 '
 
-if test -f version ; then
-    ver=$(cat version)
+if test -f release ; then
+    ver=$(cat release)
 else
     ver="$(git describe "$@" --abbrev=4 | sed -e "s/^${progname}-v//")"
     case "$ver" in

@@ -15,12 +15,11 @@ default: all
 .PHONY: default
 
 .SUFFIXES:
-GIT-MULTIPUSH-VERSION: gen-version.sh .git/$(shell git symbolic-ref HEAD)
-	@gen-version.sh git-multipush GIT_MULTIPUSH_VERSION GIT-MULTIPUSH-VERSION \
-	--tags
--include GIT-MULTIPUSH-VERSION
+VERSION: gen-version.sh .git/$(shell $(GIT) symbolic-ref HEAD)
+	@gen-version.sh git-multipush VERSION VERSION --tags
+-include VERSION
 clean-version:
-	$(RM) GIT-MULTIPUSH-VERSION
+	$(RM) VERSION
 
 clean: clean-doc clean-bin clean-version
 .PHONY: clean
@@ -33,12 +32,23 @@ all: bin doc
 install: install-bin install-doc
 .PHONY: install
 
+TARNAME=git-multipush-$(VERSION)
+dist: all
+	$(GIT) archive --format zip --prefix=$(TARNAME)/ \
+	HEAD^{tree} --output $(TARNAME).zip
+	$(GIT) archive --format tar --prefix=$(TARNAME)/ \
+	HEAD^{tree} --output $(TARNAME).tar
+	@mkdir -p $(TARNAME)
+	@echo $(VERSION) > $(TARNAME)/release
+	$(TAR) rf $(TARNAME).tar $(TARNAME)/release
+	@$(RM) -r $(TARNAME)
+	$(BZIP2) -9 $(TARNAME).tar
 
 # bin section
 bin: git-multipush
 .PHONY: bin
-git-multipush: git-multipush.sh GIT-MULTIPUSH-VERSION
-	$(SED) -e 's/^# @GIT_MULTIPUSH_VERSION@/GIT_MULTIPUSH_VERSION=$(GIT_MULTIPUSH_VERSION)/' \
+git-multipush: git-multipush.sh VERSION
+	$(SED) -e 's/^# @VERSION@/VERSION=$(VERSION)/' \
 	git-multipush.sh > git-multipush
 	@chmod +x git-multipush
 clean-bin:

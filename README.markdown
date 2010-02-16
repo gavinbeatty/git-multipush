@@ -29,14 +29,11 @@ From the manpage:
            -n, --dry-run
                Don’t run any of the git commands. Only print them, as in -v.
 
-           -b, --branch
+           -b, --branch=<branch>
                The branch to push. If none given, none are passed on to git push.
 
            --version
                Print version info in the format git multipush version $version.
-
-           <branch>
-               Any branch name that git push can handle.
 
            <remote>...
                The list of remotes to push to. None passed to git push if none
@@ -69,7 +66,6 @@ Dependencies
 ------------
 
 * sh: in POSIX
-* getopts: in POSIX.
 * git: it is very much not in POSIX.
 
 As such, git-multipush should be portable across all platforms that Git supports.

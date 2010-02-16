@@ -12,7 +12,8 @@ lf='
 '
 
 if test -f release ; then
-    ver=$(cat release)
+    cp release "$vfile"
+    cat "$vfile" >&2
 else
     ver="$(git describe "$@" --abbrev=4 | sed -e "s/^${progname}-v//")"
     case "$ver" in
@@ -26,8 +27,7 @@ else
         fi
         ;;
     esac
+    echo "${vvar} = $ver" >&2
+    echo "${vvar}=${ver}" > "$vfile"
 fi
-
-echo "${vvar} = $ver" >&2
-echo "${vvar}=${ver}" > "$vfile"
 

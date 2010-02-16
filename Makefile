@@ -15,9 +15,15 @@ default: all
 .PHONY: default
 
 .SUFFIXES:
+-include release
+ifeq ($(strip $(VERSION)),)
 VERSION: gen-version.sh .git/$(shell $(GIT) symbolic-ref HEAD)
 	@gen-version.sh git-multipush VERSION VERSION --tags
 -include VERSION
+else
+VERSION:
+.PHONY: VERSION
+endif
 clean-version:
 	$(RM) VERSION
 
@@ -39,7 +45,7 @@ dist: all VERSION
 	$(GIT) archive --format tar --prefix=$(TARNAME)/ \
 	HEAD^{tree} --output $(TARNAME).tar
 	@mkdir -p $(TARNAME)
-	@echo $(VERSION) > $(TARNAME)/release
+	@echo VERSION=$(VERSION) > $(TARNAME)/release
 	$(TAR) rf $(TARNAME).tar $(TARNAME)/release
 	@$(RM) -r $(TARNAME)
 	$(BZIP2) -9 $(TARNAME).tar

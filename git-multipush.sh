@@ -107,22 +107,22 @@ main() {
             shift
             break
         fi
-        remotes="${remotes:- }$(sq "$1")"
+        remotes="${remotes- }$(sq "$1")"
         shift
     done
     while test $# -gt 0 ; do
-        git_opts="${git_opts:- }$(sq "$1")"
+        git_opts="${git_opts- }$(sq "$1")"
         shift
     done
 
-    eval set -- "${remotes:-}"
+    eval set -- "${remotes-}"
 
     exit=0
     for rem in "$@" ; do
-        if test -z "${branch:-}" ; then
-            evalit "doit git push${git_opts:-} $(sq "$rem")"
+        if test -z "${branch-}" ; then
+            evalit "doit git push${git_opts-} $(sq "$rem")"
         else
-            evalit "doit git push${git_opts:-} $(sq "$rem") $(sq "$branch")"
+            evalit "doit git push${git_opts-} $(sq "$rem") $(sq "$branch")"
         fi
     done
     exit "$exit"

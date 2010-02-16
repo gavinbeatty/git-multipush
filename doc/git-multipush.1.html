@@ -553,7 +553,13 @@ footnotes: function () {
 </div>
 <h2 id="_synopsis">SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><strong>git multipush</strong> [<em>OPTIONS</em>] [<em>&lt;remote&gt;&#8230;</em>] [-- <em>GIT_OPTIONS</em>]</p></div>
+<div class="verseblock">
+<div class="verseblock-content"><strong>git multipush</strong> [<em>OPTIONS</em>] [<em>&lt;remote&gt;&#8230;</em>] [-- <em>GIT_OPTIONS</em>]
+<strong>git multipush</strong> [<em>OPTIONS</em>] <strong>-s</strong> <em>&lt;remote&gt;</em> [&#8230;]
+<strong>git multipush</strong> [<em>OPTIONS</em>] <strong>--unset</strong>
+<strong>git multipush</strong> [<em>OPTIONS</em>] <strong>-g</strong></div>
+<div class="verseblock-attribution">
+</div></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
@@ -614,6 +620,14 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 <dd>
 <p>
     Unset <em>multipush.remotes</em>.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-g, --get</strong>
+</dt>
+<dd>
+<p>
+    Get <em>multipush.remotes</em>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -692,7 +706,7 @@ License version 3, or at your option, any later version. (GPLv3+)</p></div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-02-16 18:47:19 CEST
+Last updated 2010-02-17 00:26:42 CEST
 </div>
 </div>
 </body>

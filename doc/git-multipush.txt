@@ -7,6 +7,9 @@ NAME
 
 SYNOPSIS
        git multipush [OPTIONS] [<remote>...] [-- GIT_OPTIONS]
+       git multipush [OPTIONS] -s <remote> [...]
+       git multipush [OPTIONS] --unset
+       git multipush [OPTIONS] -g
 
 DESCRIPTION
        Particularly useful for people hosting on multiple git repo providers
@@ -35,6 +38,9 @@ OPTIONS
 
        --unset
            Unset multipush.remotes.
+
+       -g, --get
+           Get multipush.remotes.
 
        --system
            Passed directly on to git config.
@@ -76,4 +82,4 @@ COPYING
 
 
 
-                                  02/16/2010                   GIT-MULTPUSH(1)
+                                  02/17/2010                   GIT-MULTPUSH(1)

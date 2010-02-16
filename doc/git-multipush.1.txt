@@ -8,7 +8,11 @@ git-multipush - push a branch to multiple remotes in one command.
 
 SYNOPSIS
 --------
+[verse]
 *git multipush* ['OPTIONS'] ['<remote>...'] [-- 'GIT_OPTIONS']
+*git multipush* ['OPTIONS'] *-s* '<remote>' [...]
+*git multipush* ['OPTIONS'] *--unset*
+*git multipush* ['OPTIONS'] *-g*
 
 
 DESCRIPTION
@@ -41,6 +45,9 @@ OPTIONS
 
 *--unset*::
     Unset 'multipush.remotes'.
+
+*-g, --get*::
+    Get 'multipush.remotes'.
 
 *--system*::
     Passed directly on to 'git config'.

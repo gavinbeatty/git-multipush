@@ -29,6 +29,7 @@ OPTIONS_SPEC="\
 git multipush [options] [<remote>..] [-- GIT_OPTIONS]
 git multipush [options] -s <remote> [...]
 git multipush [options] --unset
+git multipush [options] -g
 --
 v,verbose   print each command as it is run
 e,error     exit with error on the first git push error
@@ -36,6 +37,7 @@ n,dry-run   don't run any commands, just print them
 b,branch=   directly passed on to git push as follows: git push <remote> <branch>
 s,set       the given remotes are put in a comma-separated list in the config in multipush.remotes
 unset       unset multipush.remotes
+g,get       get multipush.remotes
 system      passed on to git config
 global      passed on to git config
 file=       passed on to git config
@@ -113,6 +115,7 @@ main() {
     branch=""
     set_opt=""
     unset_opt=""
+    get_opt=""
     while test $# -ne 0 ; do
         case "$1" in
         -v|--verbose)
@@ -134,6 +137,9 @@ main() {
             ;;
         --unset)
             unset_opt="true"
+            ;;
+        -g|--get)
+            get_opt="true"
             ;;
         --system)
             system="--system"
@@ -179,6 +185,9 @@ main() {
             die "Unexpected arguments given with --unset"
         fi
         git_config --unset multipush.remotes
+        exit 0
+    elif test -n "$get_opt" ; then
+        git_config multipush.remotes
         exit 0
     fi
 

@@ -13,6 +13,9 @@ From the manpage:
 
     SYNOPSIS
            git multipush [OPTIONS] [<remote>...] [-- GIT_OPTIONS]
+           git multipush [OPTIONS] -s <remote> [...]
+           git multipush [OPTIONS] --unset
+           git multipush [OPTIONS] -g
 
     DESCRIPTION
            Particularly useful for people hosting on multiple git repo providers
@@ -41,6 +44,9 @@ From the manpage:
 
            --unset
                Unset multipush.remotes.
+
+           -g, --get
+               Get multipush.remotes.
 
            --system
                Passed directly on to git config.

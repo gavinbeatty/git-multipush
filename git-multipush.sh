@@ -27,25 +27,44 @@ SUBDIRECTORY_OK=Yes
 OPTIONS_KEEPDASHDASH="yes"
 OPTIONS_SPEC="\
 git multipush [options] [<remote>..] [-- GIT_OPTIONS]
+git multipush [options] -s <remote> [...]
+git multipush [options] --unset
 --
 v,verbose   print each command as it is run
 e,error     exit with error on the first git push error
 n,dry-run   don't run any commands, just print them
 b,branch=   directly passed on to git push as follows: git push <remote> <branch>
+s,set       the given remotes are put in a comma-separated list in the config in multipush.remotes
+unset       unset multipush.remotes
+system      passed on to git config
+global      passed on to git config
+file=       passed on to git config
 d,debug     print debug info
 version     print version info in 'git multipush version \$version' format"
 
 . "$(git --exec-path)/git-sh-setup"
 
-doit() {
+debug_run() {
     if test -n "$debug" ; then
-        sq "$@"
-    elif test -n "$verbose" ; then
-        echo "$@"
+        printf "debug:" >&2
+        "$@" >&2
     fi
+}
+verbose_print() {
+    if test -n "$verbose" ; then
+        echo "$@" >&2
+    fi
+}
+run() {
     if test -z "$dryrun" ; then
         "$@"
     fi
+}
+
+doit() {
+    debug_run sq "$@"
+    verbose_print "$@"
+    run "$@"
 }
 
 sq() {
@@ -59,10 +78,31 @@ evalit() {
         if test -n "$fail" ; then
             exit "$e"
         else
-            exit="$e"
+            exxit="$e"
         fi
     fi
     return 0
+}
+
+comma_assert() {
+    for i in "$@" ; do
+        if echo "$i" | grep -F -q ',' ; then
+            die "Cannot add a default remote with a comma in its name"
+        fi
+    done
+}
+
+git_config() {
+    if test -n "${file=}" ; then
+        file=" $(sq --file "$file")"
+    fi
+    if test -n "${system=}" ; then
+        system=" $(sq "$system")"
+    fi
+    if test -n "${global=}" ; then
+        global=" $(sq "$global")"
+    fi
+    eval "doit git config${system}${global}${file} $(sq "$@")"
 }
 
 main() {
@@ -71,6 +111,8 @@ main() {
     fail=""
     debug=""
     branch=""
+    set_opt=""
+    unset_opt=""
     while test $# -ne 0 ; do
         case "$1" in
         -v|--verbose)
@@ -87,8 +129,25 @@ main() {
             branch="$2"
             shift
             ;;
+        -s|--set)
+            set_opt="true"
+            ;;
+        --unset)
+            unset_opt="true"
+            ;;
+        --system)
+            system="--system"
+            ;;
+        --global)
+            global="--global"
+            ;;
+        --file)
+            file="$2"
+            shift
+            ;;
         -d|--debug)
             debug="true"
+            verbose=""
             ;;
         --version)
             version_print
@@ -101,6 +160,27 @@ main() {
         esac
         shift
     done
+
+    if test -n "$set_opt" ; then
+        if test $# -eq 0 ; then
+            die "Must give at least one <remote> with -s|--set"
+        fi
+        remote_commas="$1"
+        shift
+        comma_assert "$remote_commas"
+        for rem in "$@" ; do
+            comma_assert "$rem"
+            remote_commas="${remote_commas},${rem}"
+        done
+        git_config multipush.remotes "$remote_commas"
+        exit 0
+    elif test -n "$unset_opt" ; then
+        if test $# -ne 0 ; then
+            die "Unexpected arguments given with --unset"
+        fi
+        git_config --unset multipush.remotes
+        exit 0
+    fi
 
     while test $# -gt 0 ; do
         if test x"$1" = x"--" ; then
@@ -117,7 +197,7 @@ main() {
 
     eval set -- "${remotes-}"
 
-    exit=0
+    exxit=0
     if test $# -gt 0 ; then
         for rem in "$@" ; do
             if test -z "${branch-}" ; then
@@ -127,9 +207,23 @@ main() {
             fi
         done
     else
-        evalit "doit git push${git_opts-}"
+        e=0
+        remote_commas="$(git_config multipush.remotes || e=$?)"
+        debug_run echo " multipush.remotes =$(sq "$remote_commas")"
+        if test "$e" -eq 0 && test -n "${remote_commas-}" ; then
+            remotes="$(echo "$remote_commas" | sed -e 's/,/ /g')"
+            for rem in $remotes ; do
+                evalit "doit git push${git_opts-} $(sq "$rem")"
+            done
+        else
+            if test -z "${branch-}" ; then
+                evalit "doit git push${git_opts-}"
+            else
+                evalit "doit git push${git_opts-} origin$(sq "$branch")"
+            fi
+        fi
     fi
-    exit "$exit"
+    exit "$exxit"
 }
 
 trap "echo \"caught SIGINT\" ; exit 1 ;" INT

@@ -47,7 +47,44 @@ Don\(cqt run any of the git commands\&. Only print them, as in
 \fB\-b, \-\-branch\fR=\fI<branch>\fR
 .RS 4
 The branch to push\&. If none given, none are passed on to
-\fBgit push\fR\&.
+\fBgit push\fR\&. If
+\fI<branch>\fR
+is given with no
+\fI<remote>\'s and no \'multipush\&.remotes\fR
+set, origin is used as the
+\fI<remote>\fR\&.
+.RE
+.PP
+\fB\-s, \-\-set\fR
+.RS 4
+Set
+\fImultipush\&.remotes\fR
+to a comma\-separated list of the given
+\fI<remotes>\fR\&. They will be used as the list of remotes to push to when none are passed explicitely\&.
+.RE
+.PP
+\fB\-\-unset\fR
+.RS 4
+Unset
+\fImultipush\&.remotes\fR\&.
+.RE
+.PP
+\fB\-\-system\fR
+.RS 4
+Passed directly on to
+\fIgit config\fR\&.
+.RE
+.PP
+\fB\-\-global\fR
+.RS 4
+Passed directly on to
+\fIgit config\fR\&.
+.RE
+.PP
+\fB\-\-file\fR=\fI<file>\fR
+.RS 4
+Passed directly on to
+\fIgit config\fR\&.
 .RE
 .PP
 \fB\-\-version\fR

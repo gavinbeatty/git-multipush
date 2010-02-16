@@ -31,6 +31,25 @@ OPTIONS
 
 *-b, --branch*='<branch>'::
     The branch to push. If none given, none are passed on to *git push*.
+    If '<branch>' is given with no '<remote>'s and no 'multipush.remotes' set,
+    origin is used as the '<remote>'.
+
+*-s, --set*::
+    Set 'multipush.remotes' to a comma-separated list of the given '<remotes>'.
+    They will be used as the list of remotes to push to when none are passed
+    explicitely.
+
+*--unset*::
+    Unset 'multipush.remotes'.
+
+*--system*::
+    Passed directly on to 'git config'.
+
+*--global*::
+    Passed directly on to 'git config'.
+
+*--file*='<file>'::
+    Passed directly on to 'git config'.
 
 *--version*::
     Print version info in the format `git multipush version $version`.

@@ -594,6 +594,50 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 <dd>
 <p>
     The branch to push. If none given, none are passed on to <strong>git push</strong>.
+    If <em>&lt;branch&gt;</em> is given with no <em>&lt;remote&gt;'s and no 'multipush.remotes</em> set,
+    origin is used as the <em>&lt;remote&gt;</em>.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-s, --set</strong>
+</dt>
+<dd>
+<p>
+    Set <em>multipush.remotes</em> to a comma-separated list of the given <em>&lt;remotes&gt;</em>.
+    They will be used as the list of remotes to push to when none are passed
+    explicitely.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>--unset</strong>
+</dt>
+<dd>
+<p>
+    Unset <em>multipush.remotes</em>.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>--system</strong>
+</dt>
+<dd>
+<p>
+    Passed directly on to <em>git config</em>.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>--global</strong>
+</dt>
+<dd>
+<p>
+    Passed directly on to <em>git config</em>.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>--file</strong>=<em>&lt;file&gt;</em>
+</dt>
+<dd>
+<p>
+    Passed directly on to <em>git config</em>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -648,7 +692,7 @@ License version 3, or at your option, any later version. (GPLv3+)</p></div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-02-16 17:42:19 CEST
+Last updated 2010-02-16 18:47:19 CEST
 </div>
 </div>
 </body>

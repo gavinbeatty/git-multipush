@@ -21,8 +21,7 @@ else
         exit 1
         ;;
     [0-9]*)
-        git update-index -q --refresh
-        if test -n "$(git diff-index --name-only HEAD --)" ; then
+        if ! git diff --quiet ; then
             ver="${ver}-dirty"
         fi
         ;;

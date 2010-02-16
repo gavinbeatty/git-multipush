@@ -18,7 +18,7 @@ default: all
 .SUFFIXES:
 
 PROJECT = git-multipush
--include git-version.mk
+-include gen-version.mk
 
 clean: clean-doc clean-bin
 .PHONY: clean

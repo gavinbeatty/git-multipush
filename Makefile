@@ -82,12 +82,12 @@ install-doc: doc
 	$(INSTALL) -d -m 0755 \
 		$(DESTDIR)$(prefix)/share/man/man1
 	$(INSTALL) -m 0644 doc/git-multipush.1 \
-		$(DESTDIR)$(prefix)/share/man/man1/
+		$(DESTDIR)$(prefix)/share/man/man1
 	$(INSTALL) -m 0644 doc/git-multipush.1.html \
-		$(DESTDIR)$(prefix)/share/man/man1/
+		$(DESTDIR)$(prefix)/share/man/man1
 	$(INSTALL) -d -m 0755 \
 		$(DESTDIR)$(prefix)/share/doc/git-multipush/
 	$(INSTALL) -m 0644 doc/git-multipush.txt \
-		$(DESTDIR)$(prefix)/share/doc/git-multipush/
+		$(DESTDIR)$(prefix)/share/doc/git-multipush
 .PHONY: install-doc
 

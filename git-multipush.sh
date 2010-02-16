@@ -118,13 +118,17 @@ main() {
     eval set -- "${remotes-}"
 
     exit=0
-    for rem in "$@" ; do
-        if test -z "${branch-}" ; then
-            evalit "doit git push${git_opts-} $(sq "$rem")"
-        else
-            evalit "doit git push${git_opts-} $(sq "$rem") $(sq "$branch")"
-        fi
-    done
+    if test $# -gt 0 ; then
+        for rem in "$@" ; do
+            if test -z "${branch-}" ; then
+                evalit "doit git push${git_opts-} $(sq "$rem")"
+            else
+                evalit "doit git push${git_opts-} $(sq "$rem") $(sq "$branch")"
+            fi
+        done
+    else
+        evalit "doit git push${git_opts-}"
+    fi
     exit "$exit"
 }
 

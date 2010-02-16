@@ -17,12 +17,12 @@ default: all
 .SUFFIXES:
 -include release
 ifeq ($(strip $(VERSION)),)
+VERSION_DEP=VERSION
 VERSION: gen-version.sh .git/$(shell $(GIT) symbolic-ref HEAD)
 	@gen-version.sh git-multipush VERSION VERSION --tags
 -include VERSION
 else
-VERSION:
-.PHONY: VERSION
+VERSION_DEP=
 endif
 clean-version:
 	$(RM) VERSION
@@ -53,7 +53,7 @@ dist: all VERSION
 # bin section
 bin: git-multipush
 .PHONY: bin
-git-multipush: git-multipush.sh VERSION
+git-multipush: git-multipush.sh $(VERSION_DEP)
 	$(SED) -e 's/^# @VERSION@/VERSION=$(VERSION)/' \
 	git-multipush.sh > git-multipush
 	@chmod +x git-multipush

@@ -39,7 +39,7 @@ OPTIONS
     Any branch name that *git push* can handle.
 
 `<remote>...`::
-    The list of remotes to push to -- defaults to origin.
+    The list of remotes to push to. None passed to *git push* if none given.
 
 'GIT_OPTIONS'::
     Options passed directly on to *git push*.

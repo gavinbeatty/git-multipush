@@ -3,6 +3,7 @@ DESTDIR=
 
 RM = rm -f
 TAR = tar
+ZIP = zip
 INSTALL = install
 GIT = git
 BZIP2 = bzip2
@@ -32,13 +33,14 @@ install: install-bin install-doc
 
 TARNAME=git-multipush-$(VERSION)
 dist: all VERSION
-	$(GIT) archive --format zip --prefix=$(TARNAME)/ \
-	HEAD^{tree} --output $(TARNAME).zip
-	$(GIT) archive --format tar --prefix=$(TARNAME)/ \
-	HEAD^{tree} --output $(TARNAME).tar
 	@mkdir -p $(TARNAME)
 	@echo VERSION=$(VERSION) > $(TARNAME)/release
-	$(TAR) rf $(TARNAME).tar $(TARNAME)/release
+	$(GIT) archive --format zip --prefix=$(TARNAME)/ \
+	HEAD^{tree} --output $(TARNAME).zip
+	@$(ZIP) -u $(TARNAME).zip $(TARNAME)/release >/dev/null
+	$(GIT) archive --format tar --prefix=$(TARNAME)/ \
+	HEAD^{tree} --output $(TARNAME).tar
+	@$(TAR) rf $(TARNAME).tar $(TARNAME)/release
 	@$(RM) -r $(TARNAME)
 	$(BZIP2) -9 $(TARNAME).tar
 

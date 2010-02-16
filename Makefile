@@ -10,7 +10,6 @@ BZIP2 = bzip2
 ASCIIDOC = asciidoc
 A2X = a2x
 SED = sed
-ROFF = groff
 
 default: all
 .PHONY: default
@@ -19,30 +18,17 @@ default: all
 
 PROJECT = git-multipush
 -include gen-version.mk
+-include dist.mk
+-include man2txt.mk
 
 clean: clean-doc clean-bin
 .PHONY: clean
-clean_: clean-doc clean-bin
-.PHONY: clean_
 
 all: bin doc
 .PHONY: all
 
 install: install-bin install-doc
 .PHONY: install
-
-TARNAME=git-multipush-$(VERSION)
-dist: all VERSION
-	@mkdir -p $(TARNAME)
-	@echo VERSION=$(VERSION) > $(TARNAME)/release
-	$(GIT) archive --format zip --prefix=$(TARNAME)/ \
-	HEAD^{tree} --output $(TARNAME).zip
-	@$(ZIP) -u $(TARNAME).zip $(TARNAME)/release >/dev/null
-	$(GIT) archive --format tar --prefix=$(TARNAME)/ \
-	HEAD^{tree} --output $(TARNAME).tar
-	@$(TAR) rf $(TARNAME).tar $(TARNAME)/release
-	@$(RM) -r $(TARNAME)
-	$(BZIP2) -9 $(TARNAME).tar
 
 # bin section
 bin: git-multipush
@@ -72,8 +58,7 @@ doc/git-multipush.1: doc/git-multipush.1.txt
 doc/git-multipush.1.html: doc/git-multipush.1.txt
 	$(ASCIIDOC) doc/git-multipush.1.txt
 doc/git-multipush.txt: doc/git-multipush.1
-	$(ROFF) -t -e -P -c -mandoc -Tutf8 doc/git-multipush.1 | col -bx \
-	> doc/git-multipush.txt
+	$(call man2txt,doc/git-multipush.1,doc/git-multipush.txt)
 clean-doc:
 	$(RM) doc/git-multipush.1 doc/git-multipush.1.html doc/git-multipush.txt
 .PHONY: clean-doc
@@ -86,8 +71,10 @@ install-doc: doc
 	$(INSTALL) -m 0644 doc/git-multipush.1.html \
 		$(DESTDIR)$(prefix)/share/man/man1
 	$(INSTALL) -d -m 0755 \
-		$(DESTDIR)$(prefix)/share/doc/git-multipush/
+		$(DESTDIR)$(prefix)/share/doc/git-multipush
 	$(INSTALL) -m 0644 doc/git-multipush.txt \
+		$(DESTDIR)$(prefix)/share/doc/git-multipush
+	$(INSTALL) -m -644 README.markdown \
 		$(DESTDIR)$(prefix)/share/doc/git-multipush
 .PHONY: install-doc
 

@@ -1,0 +1,62 @@
+GIT-MULTPUSH(1)                                                GIT-MULTPUSH(1)
+
+
+
+NAME
+       git-multipush - push a branch to multiple remotes in one command.
+
+SYNOPSIS
+       git multipush [OPTIONS] [<remote>...] [-- GIT_OPTIONS]
+
+DESCRIPTION
+       Particularly useful for people hosting on multiple git repo providers
+       all at once. e.g., github.com, gitorious.org and repo.or.cz.
+
+OPTIONS
+       -v, --verbose
+           Print the git commands before executing them.
+
+       -e, --error
+           Fail immediately when any push fails. Otherwise, we fail after all
+           pushes with the error code of the last failed push.
+
+       -n, --dry-run
+           Don’t run any of the git commands. Only print them, as in -v.
+
+       -b, --branch
+           The branch to push — defaults to git symbolic-ref HEAD.
+
+       --version
+           Print version info in the format git multipush version $version.
+
+       <branch>
+           Any branch name that git push can handle.
+
+       <remote>...
+           The list of remotes to push to — defaults to origin.
+
+       GIT_OPTIONS
+           Options passed directly on to git push.
+
+EXIT STATUS
+       0 on success and non-zero on failure.
+
+AUTHOR
+       Gavin Beatty <gavinbeatty@gmail.com>
+
+RESOURCES
+       Website: http://code.google.com/p/git-multipush/
+
+REPORTING BUGS
+       Please report all bugs and wishes to <gavinbeatty@gmail.com>
+
+COPYING
+       git-multipush Copyright (C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
+
+       Free use of this software is granted under the terms of the GNU General
+       Public License version 3, or at your option, any later version.
+       (GPLv3+)
+
+
+
+  2.0                             02/16/2010                   GIT-MULTPUSH(1)

@@ -553,7 +553,7 @@ footnotes: function () {
 </div>
 <h2 id="_synopsis">SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><strong>git multipush</strong> [<strong>-v</strong>] [<strong>-e</strong>] [<strong>-n</strong>] [<strong>-b</strong> <em>&lt;branch&gt;</em>] [<em>&lt;remote&gt;&#8230;</em>] [-- <em>GIT_OPTIONS</em>]</p></div>
+<div class="paragraph"><p><strong>git multipush</strong> [<em>OPTIONS</em>] [<em>&lt;remote&gt;&#8230;</em>] [-- <em>GIT_OPTIONS</em>]</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
@@ -564,7 +564,7 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 <div class="sectionbody">
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<strong>-v</strong>
+<strong>-v, --verbose</strong>
 </dt>
 <dd>
 <p>
@@ -572,7 +572,7 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>-e</strong>
+<strong>-e, --error</strong>
 </dt>
 <dd>
 <p>
@@ -581,7 +581,7 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>-n</strong>
+<strong>-n, --dry-run</strong>
 </dt>
 <dd>
 <p>
@@ -589,11 +589,19 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>-b</strong>
+<strong>-b, --branch</strong>
 </dt>
 <dd>
 <p>
     The branch to push&#8201;&#8212;&#8201;defaults to <tt>git symbolic-ref HEAD</tt>.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>--version</strong>
+</dt>
+<dd>
+<p>
+    Print version info in the format <tt>git multipush version $version</tt>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -648,7 +656,7 @@ License version 3, or at your option, any later version. (GPLv3+)</p></div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-02-08 10:00:00 CEST
+Last updated 2010-02-16 10:23:13 CEST
 </div>
 </div>
 </body>

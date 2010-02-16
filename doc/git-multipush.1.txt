@@ -1,6 +1,6 @@
 GIT-MULTPUSH(1)
 ===============
-:man version: 1.0
+:man version: 2.0
 
 NAME
 -----
@@ -9,7 +9,7 @@ git-multipush - push a branch to multiple remotes in one command.
 
 SYNOPSIS
 --------
-*git multipush* [*-v*] [*-e*] [*-n*] [*-b* '<branch>'] ['<remote>...'] [-- 'GIT_OPTIONS']
+*git multipush* ['OPTIONS'] ['<remote>...'] [-- 'GIT_OPTIONS']
 
 
 DESCRIPTION
@@ -20,18 +20,21 @@ once. e.g., github.com, gitorious.org and repo.or.cz.
 
 OPTIONS
 -------
-*-v*::
+*-v, --verbose*::
     Print the git commands before executing them.
 
-*-e*::
+*-e, --error*::
     Fail immediately when any push fails. Otherwise, we fail after all pushes
     with the error code of the last failed push.
 
-*-n*::
+*-n, --dry-run*::
     Don't run any of the git commands. Only print them, as in *-v*.
 
-*-b*::
+*-b, --branch*::
     The branch to push -- defaults to `git symbolic-ref HEAD`.
+
+*--version*::
+    Print version info in the format `git multipush version $version`.
 
 `<branch>`::
     Any branch name that *git push* can handle.

@@ -6,20 +6,62 @@ git multipush: Push a branch to multiple remotes in one command. Particularly
 useful for people hosting on multiple git repo providers all at once.
 e.g., github.com, gitorious.org and repo.or.cz.
 
-    Usage: git multipush [-v] [-n] [-b <branch>] [<remote>...] [-- GIT_OPTIONS]
-    Usage: git multipush [-v] [-e] [-n] [-b <branch>] [<remote>...] [-- GIT_OPTIONS]
-    
-    <branch> is the branch to push -- if none given, pass none to git push
-    <remote>... is the list of remotes to push to -- defaults to origin
-    
-    -v -- print each command as it is run.
-    -e -- fail immediately when any push fails. Otherwise, we fail after all
-          pushes with the error code of the last failed push.
-    -n -- don't run any commands, just print them.
-    -b <branch> -- push <branch> instead of `git symbolic-ref HEAD`
-    -d -- debug
-    
-    GIT_OPTIONS -- passed directly on to git push.
+From the manpage:
+
+    NAME
+           git-multipush - push a branch to multiple remotes in one command.
+
+    SYNOPSIS
+           git multipush [OPTIONS] [<remote>...] [-- GIT_OPTIONS]
+
+    DESCRIPTION
+           Particularly useful for people hosting on multiple git repo providers
+           all at once. e.g., github.com, gitorious.org and repo.or.cz.
+
+    OPTIONS
+           -v, --verbose
+               Print the git commands before executing them.
+
+           -e, --error
+               Fail immediately when any push fails. Otherwise, we fail after all
+               pushes with the error code of the last failed push.
+
+           -n, --dry-run
+               Don’t run any of the git commands. Only print them, as in -v.
+
+           -b, --branch
+               The branch to push — defaults to git symbolic-ref HEAD.
+
+           --version
+               Print version info in the format git multipush version $version.
+
+           <branch>
+               Any branch name that git push can handle.
+
+           <remote>...
+               The list of remotes to push to — defaults to origin.
+
+           GIT_OPTIONS
+               Options passed directly on to git push.
+
+    EXIT STATUS
+           0 on success and non-zero on failure.
+
+    AUTHOR
+           Gavin Beatty <gavinbeatty@gmail.com>
+
+    RESOURCES
+           Website: http://code.google.com/p/git-multipush/
+
+    REPORTING BUGS
+           Please report all bugs and wishes to <gavinbeatty@gmail.com>
+
+    COPYING
+           git-multipush Copyright (C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
+
+           Free use of this software is granted under the terms of the GNU General
+           Public License version 3, or at your option, any later version.
+           (GPLv3+)
 
 
 Dependencies

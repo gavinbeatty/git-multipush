@@ -74,7 +74,7 @@ install-doc: doc
 		$(DESTDIR)$(prefix)/share/doc/git-multipush
 	$(INSTALL) -m 0644 doc/git-multipush.txt \
 		$(DESTDIR)$(prefix)/share/doc/git-multipush
-	$(INSTALL) -m -644 README.markdown \
+	$(INSTALL) -m 0644 README.markdown \
 		$(DESTDIR)$(prefix)/share/doc/git-multipush
 .PHONY: install-doc
 

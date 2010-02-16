@@ -24,7 +24,7 @@ version_print() {
 }
 
 SUBDIRECTORY_OK=Yes
-OPTIONS_KEEPDASHDASH=""
+OPTIONS_KEEPDASHDASH="yes"
 OPTIONS_SPEC="\
 git multipush [options] [<remote>..] [-- GIT_OPTIONS]
 --

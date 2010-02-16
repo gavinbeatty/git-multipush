@@ -15,19 +15,11 @@ default: all
 .PHONY: default
 
 .SUFFIXES:
--include release
-ifeq ($(strip $(VERSION)),)
-VERSION_DEP=VERSION
-VERSION: gen-version.sh .git/$(shell $(GIT) symbolic-ref HEAD)
-	@gen-version.sh git-multipush VERSION VERSION --tags
--include VERSION
-else
-VERSION_DEP=
-endif
-clean-version:
-	$(RM) VERSION
 
-clean: clean-doc clean-bin clean-version
+PROJECT = git-multipush
+-include git-version.mk
+
+clean: clean-doc clean-bin
 .PHONY: clean
 clean_: clean-doc clean-bin
 .PHONY: clean_

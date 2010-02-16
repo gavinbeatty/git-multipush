@@ -33,7 +33,7 @@ install: install-bin install-doc
 .PHONY: install
 
 TARNAME=git-multipush-$(VERSION)
-dist: all
+dist: all VERSION
 	$(GIT) archive --format zip --prefix=$(TARNAME)/ \
 	HEAD^{tree} --output $(TARNAME).zip
 	$(GIT) archive --format tar --prefix=$(TARNAME)/ \

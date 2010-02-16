@@ -10,7 +10,7 @@ GIT-MULTIPUSH-VERSION: gen-version.sh .git/$(shell git symbolic-ref HEAD)
 	--tags
 -include GIT-MULTIPUSH-VERSION
 clean-version:
-	rm -f GIT-MULTIPUSH-VERSION version
+	rm -f GIT-MULTIPUSH-VERSION
 
 clean: clean-doc clean-bin clean-version
 .PHONY: clean

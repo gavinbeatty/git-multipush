@@ -30,7 +30,7 @@ From the manpage:
                Don’t run any of the git commands. Only print them, as in -v.
 
            -b, --branch
-               The branch to push — defaults to git symbolic-ref HEAD.
+               The branch to push. If none given, none are passed on to git push.
 
            --version
                Print version info in the format git multipush version $version.
@@ -95,6 +95,8 @@ http://www.gnu.org/licenses/
 
 Install
 -------
+    make
+
 Default prefix is /usr/local:
     sudo make install
 

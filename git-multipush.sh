@@ -17,8 +17,10 @@
 
 set -e
 
+# @GIT_MULTIPUSH_VERSION@
+
 version_print() {
-    echo "git multipush version 2.0"
+    echo "git multipush version ${GIT_MULTIPUSH_VERSION}"
 }
 
 SUBDIRECTORY_OK=Yes

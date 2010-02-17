@@ -117,13 +117,14 @@ http://www.gnu.org/licenses/
 
 Install
 -------
-Configure:
+Configure and build:
     make
 
-Or configure with your own builddir:
+Or configure and build with your own builddir:
     make builddir=../build/git-multipush
 
-Build:
+Split configure and build into two steps:
+    make conf
     make
 
 Default prefix is `/usr/local`:

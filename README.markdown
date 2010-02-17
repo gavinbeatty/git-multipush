@@ -117,14 +117,23 @@ http://www.gnu.org/licenses/
 
 Install
 -------
+Configure:
     make
 
-Default prefix is /usr/local:
+Or configure with your own builddir:
+    make builddir=../build/git-multipush
+
+Build:
+    make
+
+Default prefix is `/usr/local`:
     sudo make install
 
 Select your own prefix:
     make install prefix=~/.local
 
+DESTDIR supported so you can easily make packages. An example with `fakeroot`:
+    fakeroot make install DESTDIR=~/packages/git-multipush prefix=/usr
 
 Website
 -------

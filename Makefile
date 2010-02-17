@@ -1,10 +1,18 @@
 prefix=/usr/local
 DESTDIR=
 
+PROJECT = git-multipush
+
+bindir=$(DESTDIR)$(prefix)/bin
+docdir=$(DESTDIR)$(prefix)/share/doc/$(PROJECT)
+man1dir=$(DESTDIR)$(prefix)/share/man/man1
+
 RM = rm -f
 TAR = tar
 ZIP = zip
-INSTALL = install
+INSTALL_DATA = install -m 0644
+INSTALL_BIN = install -m 0755
+INSTALL_DIR = install -d -m 0755
 GIT = git
 BZIP2 = bzip2
 ASCIIDOC = asciidoc
@@ -16,65 +24,47 @@ default: all
 
 .SUFFIXES:
 
-PROJECT = git-multipush
 -include gen-version.mk
 -include dist.mk
 -include man2txt.mk
 
-clean: clean-doc clean-bin
-.PHONY: clean
 
 all: bin doc
-.PHONY: all
-
 install: install-bin install-doc
-.PHONY: install
+clean: clean-doc clean-bin
+.PHONY: all install clean
 
-# bin section
-bin: git-multipush
-.PHONY: bin
-git-multipush: git-multipush.sh $(VERSION_DEP)
+$(PROJECT): $(PROJECT).sh $(VERSION_DEP)
 	$(SED) -e 's/^# @VERSION@/VERSION=$(VERSION)/' \
-	git-multipush.sh > git-multipush
-	@chmod +x git-multipush
+	$(PROJECT).sh > $(PROJECT)
+	@chmod +x $(PROJECT)
+bin: $(PROJECT)
 clean-bin:
-	$(RM) git-multipush
-.PHONY: clean-bin
-
+	$(RM) $(PROJECT)
 install-bin: bin
-	$(INSTALL) -d -m 0755 $(DESTDIR)$(prefix)/bin
-	$(INSTALL) -m 0755 git-multipush $(DESTDIR)$(prefix)/bin
-.PHONY: install-bin
+	$(INSTALL_DIR) $(bindir)
+	$(INSTALL_BIN) $(PROJECT) $(bindir)
+.PHONY: bin clean-bin install-bin
 
 
-# doc section
-doc: doc/git-multipush.1.txt \
-	doc/git-multipush.1 \
-	doc/git-multipush.1.html \
-	doc/git-multipush.txt
-.PHONY: doc
-doc/git-multipush.1: doc/git-multipush.1.txt
-	$(A2X) -f manpage -L doc/git-multipush.1.txt
-doc/git-multipush.1.html: doc/git-multipush.1.txt
-	$(ASCIIDOC) doc/git-multipush.1.txt
-doc/git-multipush.txt: doc/git-multipush.1
-	$(call man2txt,doc/git-multipush.1,doc/git-multipush.txt)
+doc/$(PROJECT).1: doc/$(PROJECT).1.txt
+	$(A2X) -f manpage -L doc/$(PROJECT).1.txt
+doc/$(PROJECT).1.html: doc/$(PROJECT).1.txt
+	$(ASCIIDOC) doc/$(PROJECT).1.txt
+doc/$(PROJECT).txt: doc/$(PROJECT).1
+	$(call man2txt,doc/$(PROJECT).1,doc/$(PROJECT).txt)
+doc: doc/$(PROJECT).1.txt \
+	doc/$(PROJECT).1 \
+	doc/$(PROJECT).1.html \
+	doc/$(PROJECT).txt
 clean-doc:
-	$(RM) doc/git-multipush.1 doc/git-multipush.1.html doc/git-multipush.txt
-.PHONY: clean-doc
-
+	$(RM) doc/$(PROJECT).1 doc/$(PROJECT).1.html doc/$(PROJECT).txt
 install-doc: doc
-	$(INSTALL) -d -m 0755 \
-		$(DESTDIR)$(prefix)/share/man/man1
-	$(INSTALL) -m 0644 doc/git-multipush.1 \
-		$(DESTDIR)$(prefix)/share/man/man1
-	$(INSTALL) -m 0644 doc/git-multipush.1.html \
-		$(DESTDIR)$(prefix)/share/man/man1
-	$(INSTALL) -d -m 0755 \
-		$(DESTDIR)$(prefix)/share/doc/git-multipush
-	$(INSTALL) -m 0644 doc/git-multipush.txt \
-		$(DESTDIR)$(prefix)/share/doc/git-multipush
-	$(INSTALL) -m 0644 README.markdown \
-		$(DESTDIR)$(prefix)/share/doc/git-multipush
-.PHONY: install-doc
+	$(INSTALL_DIR) $(man1dir)
+	$(INSTALL_DATA) doc/$(PROJECT).1 $(man1dir)
+	$(INSTALL_DATA) doc/$(PROJECT).1.html $(man1dir)
+	$(INSTALL_DIR) $(docdir)
+	$(INSTALL_DATA) doc/$(PROJECT).txt $(docdir)
+	$(INSTALL_DATA) README.markdown $(docdir)
+.PHONY: doc clean-doc install-doc
 

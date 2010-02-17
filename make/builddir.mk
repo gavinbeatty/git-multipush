@@ -28,9 +28,11 @@ endif
 
 distclean: clean confclean
 confclean:
-	$(RM) $(BUILDDIR_MK) $(BUILDDIR_CONF)
+	$(call clean_p,$(BUILDDIR_MK))$(RM) $(BUILDDIR_MK)
+	$(call clean_p,$(BUILDDIR_CONF))$(RM) $(BUILDDIR_CONF)
 builddir_:
-	$(INSTALL_DIR) $(builddir)
+	$(call configure_p,builddir)
+	@$(INSTALL_DIR) $(builddir)
 	@echo '$(BUILDDIR_HAVE_VAR)=1' >> $(BUILDDIR_CONF)
 .PHONY: distclean confclean builddir_
 

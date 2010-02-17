@@ -26,17 +26,17 @@ default: all
 
 .SUFFIXES:
 
+include make/pretty.mk
 include make/builddir.mk
 include make/gen-version.mk
 include make/dist.mk
 include make/man2txt.mk
-include make/pretty.mk
 -include make/.builddir.mk
 -include $(builddir)/.build.mk
 
 ifneq ($(HAVE_BUILDDIR),1)
 all: conf
-	$(MAKE) all
+	$(make_p)$(MAKE) all
 conf: builddir
 	$(call write_builddir_path,builddir)
 else
@@ -44,9 +44,9 @@ all: bin doc
 endif
 install: install-bin install-doc
 clean:
-	$(RM) -r $(builddir)
+	$(call clean_dir_p,$(builddir))
 builddir_doc:
-	$(INSTALL_DIR) $(builddir)/doc
+	@$(INSTALL_DIR) $(builddir)/doc
 builddir: builddir_ builddir_doc
 .PHONY: all conf install clean builddir builddir_doc
 

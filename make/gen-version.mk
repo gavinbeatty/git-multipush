@@ -25,6 +25,6 @@ else
 $(PROJECT_VERSION_VAR)_DEP=
 endif
 clean-version:
-	$(RM) $(PROJECT_VERSION_VAR)
+	$(call clean_p,$(PROJECT_VERSION_VAR))$(RM) $(PROJECT_VERSION_VAR)
 clean: clean-version
 

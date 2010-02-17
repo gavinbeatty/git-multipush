@@ -1,3 +1,4 @@
-git-multipush
 VERSION
 release
+build
+.builddir.mk

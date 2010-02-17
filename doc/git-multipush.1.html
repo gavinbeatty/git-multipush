@@ -600,8 +600,8 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 <dd>
 <p>
     The branch to push. If none given, none are passed on to <strong>git push</strong>.
-    If <em>&lt;branch&gt;</em> is given with no <em>&lt;remote&gt;'s and no 'multipush.remotes</em> set,
-    origin is used as the <em>&lt;remote&gt;</em>.
+    If <em>&lt;branch&gt;</em> is given with no <em>&lt;remote&gt;'s and no
+    'multipush.&lt;branch&gt;.remotes</em> set, origin is used as the <em>&lt;remote&gt;</em>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -609,9 +609,9 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 </dt>
 <dd>
 <p>
-    Set <em>multipush.remotes</em> to a comma-separated list of the given <em>&lt;remotes&gt;</em>.
-    They will be used as the list of remotes to push to when none are passed
-    explicitely.
+    Set <em>multipush.&lt;branch&gt;.remotes</em> to a comma-separated list of the given
+    <em>&lt;remotes&gt;</em>. They will be used as the list of remotes to push to when none
+    are passed explicitely.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -619,7 +619,7 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 </dt>
 <dd>
 <p>
-    Unset <em>multipush.remotes</em>.
+    Unset <em>multipush.&lt;branch&gt;.remotes</em>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -627,7 +627,7 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 </dt>
 <dd>
 <p>
-    Get <em>multipush.remotes</em>.
+    Get <em>multipush.&lt;branch&gt;.remotes</em> and print each remote on its own line.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -652,6 +652,15 @@ once. e.g., github.com, gitorious.org and repo.or.cz.</p></div>
 <dd>
 <p>
     Passed directly on to <em>git config</em>.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-z, --null</strong>
+</dt>
+<dd>
+<p>
+    Only applies when <strong>-g, --get</strong> used. Print each remote with a
+    null-terminator instead of a newline. Useful with <strong>xargs -0</strong> etc.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -706,7 +715,7 @@ License version 3, or at your option, any later version. (GPLv3+)</p></div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-02-17 00:26:42 CEST
+Last updated 2010-02-17 09:40:24 CEST
 </div>
 </div>
 </body>

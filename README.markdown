@@ -34,19 +34,20 @@ From the manpage:
 
            -b, --branch=<branch>
                The branch to push. If none given, none are passed on to git push.
-               If <branch> is given with no <remote>´s and no ´multipush.remotes
-               set, origin is used as the <remote>.
+               If <branch> is given with no <remote>´s and no
+               ´multipush.<branch>.remotes set, origin is used as the <remote>.
 
            -s, --set
-               Set multipush.remotes to a comma-separated list of the given
-               <remotes>. They will be used as the list of remotes to push to when
-               none are passed explicitely.
+               Set multipush.<branch>.remotes to a comma-separated list of the
+               given <remotes>. They will be used as the list of remotes to push
+               to when none are passed explicitely.
 
            --unset
-               Unset multipush.remotes.
+               Unset multipush.<branch>.remotes.
 
            -g, --get
-               Get multipush.remotes.
+               Get multipush.<branch>.remotes and print each remote on its own
+               line.
 
            --system
                Passed directly on to git config.
@@ -56,6 +57,10 @@ From the manpage:
 
            --file=<file>
                Passed directly on to git config.
+
+           -z, --null
+               Only applies when -g, --get used. Print each remote with a
+               null-terminator instead of a newline. Useful with xargs -0 etc.
 
            --version
                Print version info in the format git multipush version $version.

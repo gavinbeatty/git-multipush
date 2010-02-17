@@ -55,7 +55,7 @@ The branch to push\&. If none given, none are passed on to
 \fBgit push\fR\&. If
 \fI<branch>\fR
 is given with no
-\fI<remote>\'s and no \'multipush\&.remotes\fR
+\fI<remote>\'s and no \'multipush\&.<branch>\&.remotes\fR
 set, origin is used as the
 \fI<remote>\fR\&.
 .RE
@@ -63,7 +63,7 @@ set, origin is used as the
 \fB\-s, \-\-set\fR
 .RS 4
 Set
-\fImultipush\&.remotes\fR
+\fImultipush\&.<branch>\&.remotes\fR
 to a comma\-separated list of the given
 \fI<remotes>\fR\&. They will be used as the list of remotes to push to when none are passed explicitely\&.
 .RE
@@ -71,13 +71,14 @@ to a comma\-separated list of the given
 \fB\-\-unset\fR
 .RS 4
 Unset
-\fImultipush\&.remotes\fR\&.
+\fImultipush\&.<branch>\&.remotes\fR\&.
 .RE
 .PP
 \fB\-g, \-\-get\fR
 .RS 4
 Get
-\fImultipush\&.remotes\fR\&.
+\fImultipush\&.<branch>\&.remotes\fR
+and print each remote on its own line\&.
 .RE
 .PP
 \fB\-\-system\fR
@@ -96,6 +97,15 @@ Passed directly on to
 .RS 4
 Passed directly on to
 \fIgit config\fR\&.
+.RE
+.PP
+\fB\-z, \-\-null\fR
+.RS 4
+Only applies when
+\fB\-g, \-\-get\fR
+used\&. Print each remote with a null\-terminator instead of a newline\&. Useful with
+\fBxargs \-0\fR
+etc\&.
 .RE
 .PP
 \fB\-\-version\fR

@@ -1,0 +1,3 @@
+
+* check/warn that each remote exists when doing -s
+

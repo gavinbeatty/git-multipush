@@ -1,3 +1,6 @@
 
 * check/warn that each remote exists when doing -s
+* bug where -n doesn't function same as without
+* bug where git-multipush does git push origin master instead of git push
+  origin when multipush.master.remotes is set
 

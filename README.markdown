@@ -96,6 +96,7 @@ Dependencies
 ------------
 
 * sh: in POSIX
+* sed: in POSIX
 * git: it is very much not in POSIX.
 
 As such, git-multipush should be portable across all platforms that Git supports.

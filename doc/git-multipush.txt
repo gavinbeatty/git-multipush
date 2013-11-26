@@ -1,62 +1,62 @@
-GIT-MULTPUSH(1)                                                GIT-MULTPUSH(1)
+GIT−MULTPUSH(1)                                                GIT−MULTPUSH(1)
 
 
 
 NAME
-       git-multipush - push a branch to multiple remotes in one command.
+       git‐multipush − push a branch to multiple remotes in one command.
 
 SYNOPSIS
-       git multipush [OPTIONS] [<remote>...] [-- GIT_OPTIONS]
-       git multipush [OPTIONS] -s <remote> [...]
-       git multipush [OPTIONS] --unset
-       git multipush [OPTIONS] -g
+       git multipush [OPTIONS] [<remote>...] [−− GIT_OPTIONS]
+       git multipush [OPTIONS] −s <remote> [...]
+       git multipush [OPTIONS] −−unset
+       git multipush [OPTIONS] −g
 
 DESCRIPTION
        Particularly useful for people hosting on multiple git repo providers
        all at once. e.g., github.com, gitorious.org and repo.or.cz.
 
 OPTIONS
-       -v, --verbose
+       −v, −−verbose
            Print the git commands before executing them.
 
-       -e, --error
+       −e, −−error
            Fail immediately when any push fails. Otherwise, we fail after all
            pushes with the error code of the last failed push.
 
-       -n, --dry-run
-           Don’t run any of the git commands. Only print them, as in -v.
+       −n, −−dry−run
+           Don’t run any of the git commands. Only print them, as in −v.
 
-       -b, --branch=<branch>
+       −b, −−branch=<branch>
            The branch to push. If none given, none are passed on to git push.
-           If <branch> is given with no <remote>´s and no
-           ´multipush.<branch>.remotes set, origin is used as the <remote>.
+           If <branch> is given with no <remote>'s and no
+           'multipush.<branch>.remotes set, origin is used as the <remote>.
 
-       -s, --set
-           Set multipush.<branch>.remotes to a comma-separated list of the
+       −s, −−set
+           Set multipush.<branch>.remotes to a comma−separated list of the
            given <remotes>. They will be used as the list of remotes to push
            to when none are passed explicitely.
 
-       --unset
+       −−unset
            Unset multipush.<branch>.remotes.
 
-       -g, --get
+       −g, −−get
            Get multipush.<branch>.remotes and print each remote on its own
            line.
 
-       --system
+       −−system
            Passed directly on to git config.
 
-       --global
+       −−global
            Passed directly on to git config.
 
-       --file=<file>
+       −−file=<file>
            Passed directly on to git config.
 
-       -z, --null
-           Only applies when -g, --get used. Print each remote with a
-           null-terminator instead of a newline. Useful with xargs -0 etc.
+       −z, −−null
+           Only applies when −g, −−get used. Print each remote with a
+           null−terminator instead of a newline. Useful with xargs −0 etc.
 
-       --version
+       −−version
            Print version info in the format git multipush version $version.
 
        <remote>...
@@ -67,19 +67,19 @@ OPTIONS
            Options passed directly on to git push.
 
 EXIT STATUS
-       0 on success and non-zero on failure.
+       0 on success and non−zero on failure.
 
 AUTHOR
        Gavin Beatty <gavinbeatty@gmail.com>
 
 RESOURCES
-       Website: http://code.google.com/p/git-multipush/
+       Website: https://github.com/gavinbeatty/git−multipush
 
 REPORTING BUGS
        Please report all bugs and wishes to <gavinbeatty@gmail.com>
 
 COPYING
-       git-multipush Copyright (C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
+       git−multipush Copyright (C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
 
        Free use of this software is granted under the terms of the GNU General
        Public License version 3, or at your option, any later version.
@@ -87,4 +87,4 @@ COPYING
 
 
 
-                                  02/17/2010                   GIT-MULTPUSH(1)
+                                  11/25/2013                   GIT−MULTPUSH(1)

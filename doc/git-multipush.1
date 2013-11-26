@@ -1,13 +1,22 @@
 '\" t
 .\"     Title: git-multpush
 .\"    Author: [see the "AUTHOR" section]
-.\" Generator: DocBook XSL Stylesheets v1.75.2 <http://docbook.sf.net/>
-.\"      Date: 02/17/2010
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 11/25/2013
 .\"    Manual: \ \&
 .\"    Source: \ \&
 .\"  Language: English
 .\"
-.TH "GIT\-MULTPUSH" "1" "02/17/2010" "\ \&" "\ \&"
+.TH "GIT\-MULTPUSH" "1" "11/25/2013" "\ \&" "\ \&"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
 .\" -----------------------------------------------------------------
 .\" * set default formatting
 .\" -----------------------------------------------------------------
@@ -55,7 +64,7 @@ The branch to push\&. If none given, none are passed on to
 \fBgit push\fR\&. If
 \fI<branch>\fR
 is given with no
-\fI<remote>\'s and no \'multipush\&.<branch>\&.remotes\fR
+\fI<remote>\*(Aqs and no \*(Aqmultipush\&.<branch>\&.remotes\fR
 set, origin is used as the
 \fI<remote>\fR\&.
 .RE
@@ -134,7 +143,7 @@ Options passed directly on to
 Gavin Beatty <gavinbeatty@gmail\&.com>
 .SH "RESOURCES"
 .sp
-Website: http://code\&.google\&.com/p/git\-multipush/
+Website: https://github\&.com/gavinbeatty/git\-multipush
 .SH "REPORTING BUGS"
 .sp
 Please report all bugs and wishes to <gavinbeatty@gmail\&.com>

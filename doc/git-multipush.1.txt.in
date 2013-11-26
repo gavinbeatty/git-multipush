@@ -1,6 +1,5 @@
 GIT-MULTPUSH(1)
 ===============
-# @VERSION@
 
 NAME
 -----
@@ -85,7 +84,7 @@ Gavin Beatty <gavinbeatty@gmail.com>
 
 RESOURCES
 ---------
-Website: <http://code.google.com/p/git-multipush/>
+Website: <https://github.com/gavinbeatty/git-multipush>
 
 
 REPORTING BUGS
@@ -99,5 +98,3 @@ git-multipush Copyright \(C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
 
 Free use of this software is granted under the terms of the GNU General Public
 License version 3, or at your option, any later version. (GPLv3+)
-
-

@@ -79,7 +79,7 @@ From the manpage:
            Gavin Beatty <gavinbeatty@gmail.com>
 
     RESOURCES
-           Website: http://code.google.com/p/git-multipush/
+           Website: https://github.com/gavinbeatty/git-multipush
 
     REPORTING BUGS
            Please report all bugs and wishes to <gavinbeatty@gmail.com>
@@ -123,26 +123,34 @@ http://www.gnu.org/licenses/
 
 Install
 -------
+
 Configure and build:
+
     make
 
 Or configure and build with your own builddir:
+
     make builddir=../build/git-multipush
 
 Split configure and build into two steps:
+
     make conf
     make
 
 Default prefix is `/usr/local`:
+
     sudo make install
 
 Select your own prefix:
+
     make install prefix=~/.local
 
-DESTDIR supported so you can easily make packages. An example with `fakeroot`:
+`DESTDIR` supported so you can easily make packages. An example with `fakeroot`:
+
     fakeroot make install DESTDIR=~/packages/git-multipush prefix=/usr
 
 Website
 -------
-http://code.google.com/p/git-multipush/
+
+https://github.com/gavinbeatty/git-multipush
 
